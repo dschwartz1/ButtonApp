@@ -20,34 +20,26 @@
                                 <rect key="frame" x="185" y="185" width="230" height="230"/>
                                 <state key="normal" image="MyButton"/>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q5c-2b-F43">
-                                <rect key="frame" x="95" y="433" width="410" height="30"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="2855 Scott St, San Francisco, CA">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="smallSystem"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2855 Scott St., San Francisco, CA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ED8-0m-TD5">
+                                <rect key="frame" x="169" y="423" width="263" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="q5c-2b-F43" secondAttribute="centerX" id="1uX-jW-5d6"/>
                             <constraint firstAttribute="centerY" secondItem="kod-1P-d0n" secondAttribute="centerY" id="2GB-xo-1Qh"/>
                             <constraint firstAttribute="centerX" secondItem="kod-1P-d0n" secondAttribute="centerX" id="3dW-6a-lqP"/>
-                            <constraint firstItem="q5c-2b-F43" firstAttribute="top" secondItem="kod-1P-d0n" secondAttribute="bottom" constant="94" id="9hN-8z-Sz0"/>
+                            <constraint firstAttribute="centerX" secondItem="ED8-0m-TD5" secondAttribute="centerX" id="JxY-a4-dru"/>
                             <constraint firstAttribute="centerY" secondItem="kod-1P-d0n" secondAttribute="centerY" id="NfE-35-sKa"/>
-                            <constraint firstItem="q5c-2b-F43" firstAttribute="top" secondItem="kod-1P-d0n" secondAttribute="bottom" constant="18" id="SuT-xg-K68"/>
+                            <constraint firstItem="ED8-0m-TD5" firstAttribute="top" secondItem="kod-1P-d0n" secondAttribute="bottom" constant="8" id="fBu-55-UI3"/>
                             <constraint firstItem="kod-1P-d0n" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="125" id="g5l-6g-Pig"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="2GB-xo-1Qh"/>
                                 <exclude reference="g5l-6g-Pig"/>
-                                <exclude reference="9hN-8z-Sz0"/>
                             </mask>
                         </variation>
                     </view>
