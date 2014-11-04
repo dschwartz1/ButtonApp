@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63CC4AC11A0869D70090945E /* LocationEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CC4AC01A0869D70090945E /* LocationEntry.m */; };
+		63CC4AC31A0872BF0090945E /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 63CC4AC21A0872BF0090945E /* ToDo */; };
 		63E3B2501A0855930087D1D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B24F1A0855930087D1D6 /* main.m */; };
 		63E3B2531A0855930087D1D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B2521A0855930087D1D6 /* AppDelegate.m */; };
 		63E3B2561A0855930087D1D6 /* Button1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B2541A0855930087D1D6 /* Button1.xcdatamodeld */; };
@@ -28,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63CC4ABF1A0869D70090945E /* LocationEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEntry.h; sourceTree = "<group>"; };
+		63CC4AC01A0869D70090945E /* LocationEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEntry.m; sourceTree = "<group>"; };
+		63CC4AC21A0872BF0090945E /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
 		63E3B24A1A0855930087D1D6 /* Button1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Button1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E3B24E1A0855930087D1D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63E3B24F1A0855930087D1D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,6 +93,9 @@
 				63E3B2571A0855930087D1D6 /* ViewController.h */,
 				63E3B2581A0855930087D1D6 /* ViewController.m */,
 				63E3B25A1A0855930087D1D6 /* Main.storyboard */,
+				63CC4AC21A0872BF0090945E /* ToDo */,
+				63CC4ABF1A0869D70090945E /* LocationEntry.h */,
+				63CC4AC01A0869D70090945E /* LocationEntry.m */,
 				63E3B25D1A0855930087D1D6 /* Images.xcassets */,
 				63E3B25F1A0855930087D1D6 /* LaunchScreen.xib */,
 				63E3B2541A0855930087D1D6 /* Button1.xcdatamodeld */,
@@ -204,6 +212,7 @@
 			files = (
 				63E3B25C1A0855930087D1D6 /* Main.storyboard in Resources */,
 				63E3B2611A0855930087D1D6 /* LaunchScreen.xib in Resources */,
+				63CC4AC31A0872BF0090945E /* ToDo in Resources */,
 				63E3B25E1A0855930087D1D6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,6 +233,7 @@
 			files = (
 				63E3B2531A0855930087D1D6 /* AppDelegate.m in Sources */,
 				63E3B2501A0855930087D1D6 /* main.m in Sources */,
+				63CC4AC11A0869D70090945E /* LocationEntry.m in Sources */,
 				63E3B2591A0855930087D1D6 /* ViewController.m in Sources */,
 				63E3B2561A0855930087D1D6 /* Button1.xcdatamodeld in Sources */,
 			);
@@ -416,6 +426,7 @@
 				63E3B2721A0855930087D1D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		63E3B2731A0855930087D1D6 /* Build configuration list for PBXNativeTarget "Button1Tests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +435,7 @@
 				63E3B2751A0855930087D1D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
