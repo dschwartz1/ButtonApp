@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Add Location View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="AddLocationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -16,8 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q5c-2b-F43">
-                                <rect key="frame" x="138" y="428" width="328" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kod-1P-d0n">
+                                <rect key="frame" x="185" y="185" width="230" height="230"/>
+                                <state key="normal" image="MyButton"/>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q5c-2b-F43">
+                                <rect key="frame" x="95" y="433" width="410" height="30"/>
                                 <attributedString key="attributedText">
                                     <fragment content="2855 Scott St, San Francisco, CA">
                                         <attributes>
@@ -28,25 +32,32 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kod-1P-d0n">
-                                <rect key="frame" x="165" y="145" width="271" height="189"/>
-                                <state key="normal" image="BigButton-dark"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="q5c-2b-F43" secondAttribute="centerX" constant="6.5" id="LaK-d1-Iwt"/>
-                            <constraint firstAttribute="centerX" secondItem="kod-1P-d0n" secondAttribute="centerX" constant="-0.5" id="c32-ah-Iky"/>
-                            <constraint firstAttribute="centerY" secondItem="kod-1P-d0n" secondAttribute="centerY" constant="60.5" id="ciW-if-Had"/>
+                            <constraint firstAttribute="centerX" secondItem="q5c-2b-F43" secondAttribute="centerX" id="1uX-jW-5d6"/>
+                            <constraint firstAttribute="centerY" secondItem="kod-1P-d0n" secondAttribute="centerY" id="2GB-xo-1Qh"/>
+                            <constraint firstAttribute="centerX" secondItem="kod-1P-d0n" secondAttribute="centerX" id="3dW-6a-lqP"/>
+                            <constraint firstItem="q5c-2b-F43" firstAttribute="top" secondItem="kod-1P-d0n" secondAttribute="bottom" constant="94" id="9hN-8z-Sz0"/>
+                            <constraint firstAttribute="centerY" secondItem="kod-1P-d0n" secondAttribute="centerY" id="NfE-35-sKa"/>
+                            <constraint firstItem="q5c-2b-F43" firstAttribute="top" secondItem="kod-1P-d0n" secondAttribute="bottom" constant="18" id="SuT-xg-K68"/>
+                            <constraint firstItem="kod-1P-d0n" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="125" id="g5l-6g-Pig"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2GB-xo-1Qh"/>
+                                <exclude reference="g5l-6g-Pig"/>
+                                <exclude reference="9hN-8z-Sz0"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="145" y="110"/>
+            <point key="canvasLocation" x="153" y="155"/>
         </scene>
     </scenes>
     <resources>
-        <image name="BigButton-dark" width="260" height="172"/>
+        <image name="MyButton" width="230" height="230"/>
     </resources>
 </document>

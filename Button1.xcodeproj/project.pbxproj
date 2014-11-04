@@ -17,6 +17,7 @@
 		63E3B25E1A0855930087D1D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63E3B25D1A0855930087D1D6 /* Images.xcassets */; };
 		63E3B2611A0855930087D1D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E3B25F1A0855930087D1D6 /* LaunchScreen.xib */; };
 		63E3B26D1A0855930087D1D6 /* Button1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B26C1A0855930087D1D6 /* Button1Tests.m */; };
+		63F8EE0A1A0975AA00ED8459 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F8EE091A0975AA00ED8459 /* AddLocationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		63E3B2661A0855930087D1D6 /* Button1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Button1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E3B26B1A0855930087D1D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63E3B26C1A0855930087D1D6 /* Button1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Button1Tests.m; sourceTree = "<group>"; };
+		63F8EE081A0975AA00ED8459 /* AddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
+		63F8EE091A0975AA00ED8459 /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				63E3B25F1A0855930087D1D6 /* LaunchScreen.xib */,
 				63E3B2541A0855930087D1D6 /* Button1.xcdatamodeld */,
 				63E3B24D1A0855930087D1D6 /* Supporting Files */,
+				63F8EE081A0975AA00ED8459 /* AddLocationViewController.h */,
+				63F8EE091A0975AA00ED8459 /* AddLocationViewController.m */,
 			);
 			path = Button1;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				63E3B2531A0855930087D1D6 /* AppDelegate.m in Sources */,
 				63E3B2501A0855930087D1D6 /* main.m in Sources */,
 				63CC4AC11A0869D70090945E /* LocationEntry.m in Sources */,
+				63F8EE0A1A0975AA00ED8459 /* AddLocationViewController.m in Sources */,
 				63E3B2591A0855930087D1D6 /* ViewController.m in Sources */,
 				63E3B2561A0855930087D1D6 /* Button1.xcdatamodeld in Sources */,
 			);
