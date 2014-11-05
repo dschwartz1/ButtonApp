@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Add Location View Controller-->
@@ -13,28 +14,45 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kod-1P-d0n">
-                                <rect key="frame" x="185" y="185" width="230" height="230"/>
+                                <rect key="frame" x="45" y="169" width="230" height="230"/>
                                 <state key="normal" image="MyButton"/>
+                                <connections>
+                                    <action selector="getLocation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="jLu-Cy-E5L"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2855 Scott St., San Francisco, CA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ED8-0m-TD5">
-                                <rect key="frame" x="169" y="423" width="263" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QR3-lF-lP9">
+                                <rect key="frame" x="6" y="10" width="308" height="156"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="This button resets the location field">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearLocation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Muq-EZ-E3L"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ED8-0m-TD5">
+                                <rect key="frame" x="3" y="407" width="315" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="kod-1P-d0n" firstAttribute="top" secondItem="QR3-lF-lP9" secondAttribute="bottom" constant="3" id="1P3-4g-92m"/>
                             <constraint firstAttribute="centerY" secondItem="kod-1P-d0n" secondAttribute="centerY" id="2GB-xo-1Qh"/>
-                            <constraint firstAttribute="centerX" secondItem="kod-1P-d0n" secondAttribute="centerX" id="3dW-6a-lqP"/>
-                            <constraint firstAttribute="centerX" secondItem="ED8-0m-TD5" secondAttribute="centerX" id="JxY-a4-dru"/>
-                            <constraint firstAttribute="centerY" secondItem="kod-1P-d0n" secondAttribute="centerY" id="NfE-35-sKa"/>
+                            <constraint firstItem="QR3-lF-lP9" firstAttribute="centerX" secondItem="ED8-0m-TD5" secondAttribute="centerX" id="O6n-Yw-PeZ"/>
+                            <constraint firstAttribute="centerX" secondItem="kod-1P-d0n" secondAttribute="centerX" id="aME-4Z-gbe"/>
+                            <constraint firstItem="QR3-lF-lP9" firstAttribute="centerX" secondItem="kod-1P-d0n" secondAttribute="centerX" id="ehy-lV-4SD"/>
                             <constraint firstItem="ED8-0m-TD5" firstAttribute="top" secondItem="kod-1P-d0n" secondAttribute="bottom" constant="8" id="fBu-55-UI3"/>
                             <constraint firstItem="kod-1P-d0n" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="125" id="g5l-6g-Pig"/>
+                            <constraint firstAttribute="centerY" secondItem="kod-1P-d0n" secondAttribute="centerY" id="oEI-Uw-37a"/>
+                            <constraint firstItem="QR3-lF-lP9" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="10" id="spR-vm-pe6"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -43,10 +61,14 @@
                             </mask>
                         </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="locationField" destination="ED8-0m-TD5" id="xtp-bt-AUc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="155"/>
+            <point key="canvasLocation" x="119" y="422"/>
         </scene>
     </scenes>
     <resources>

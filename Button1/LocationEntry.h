@@ -11,7 +11,9 @@
 
 @interface LocationEntry : NSObject
 
-@property CLPlacemark *place;
+@property NSString *name;
+
+// @property CLPlacemark *place;
 
 @property (readonly) NSDate *creationDate;
 
