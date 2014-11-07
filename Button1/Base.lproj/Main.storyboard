@@ -27,7 +27,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QR3-lF-lP9">
                                 <rect key="frame" x="6" y="10" width="308" height="156"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="This button resets the location field">
+                                <state key="normal">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -47,6 +47,8 @@
                             <constraint firstItem="kod-1P-d0n" firstAttribute="top" secondItem="QR3-lF-lP9" secondAttribute="bottom" constant="3" id="1P3-4g-92m"/>
                             <constraint firstAttribute="centerY" secondItem="kod-1P-d0n" secondAttribute="centerY" id="2GB-xo-1Qh"/>
                             <constraint firstItem="QR3-lF-lP9" firstAttribute="centerX" secondItem="ED8-0m-TD5" secondAttribute="centerX" id="O6n-Yw-PeZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QR3-lF-lP9" secondAttribute="trailing" constant="-10" id="Wu9-Ki-yYV"/>
+                            <constraint firstItem="QR3-lF-lP9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-10" id="XGl-zx-SXQ"/>
                             <constraint firstAttribute="centerX" secondItem="kod-1P-d0n" secondAttribute="centerX" id="aME-4Z-gbe"/>
                             <constraint firstItem="QR3-lF-lP9" firstAttribute="centerX" secondItem="kod-1P-d0n" secondAttribute="centerX" id="ehy-lV-4SD"/>
                             <constraint firstItem="ED8-0m-TD5" firstAttribute="top" secondItem="kod-1P-d0n" secondAttribute="bottom" constant="8" id="fBu-55-UI3"/>
