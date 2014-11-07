@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630CBC001A09BAE600688B93 /* LocationStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 630CBBFF1A09BAE600688B93 /* LocationStack.m */; };
 		63CC4AC11A0869D70090945E /* LocationEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CC4AC01A0869D70090945E /* LocationEntry.m */; };
 		63CC4AC31A0872BF0090945E /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 63CC4AC21A0872BF0090945E /* ToDo */; };
 		63E3B2501A0855930087D1D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B24F1A0855930087D1D6 /* main.m */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		630CBBFE1A09BAE600688B93 /* LocationStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationStack.h; sourceTree = "<group>"; };
+		630CBBFF1A09BAE600688B93 /* LocationStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationStack.m; sourceTree = "<group>"; };
 		63CC4ABF1A0869D70090945E /* LocationEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEntry.h; sourceTree = "<group>"; };
 		63CC4AC01A0869D70090945E /* LocationEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEntry.m; sourceTree = "<group>"; };
 		63CC4AC21A0872BF0090945E /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 				63CC4AC21A0872BF0090945E /* ToDo */,
 				63CC4ABF1A0869D70090945E /* LocationEntry.h */,
 				63CC4AC01A0869D70090945E /* LocationEntry.m */,
+				630CBBFE1A09BAE600688B93 /* LocationStack.h */,
+				630CBBFF1A09BAE600688B93 /* LocationStack.m */,
 				63E3B25D1A0855930087D1D6 /* Images.xcassets */,
 				63E3B25F1A0855930087D1D6 /* LaunchScreen.xib */,
 				63E3B2541A0855930087D1D6 /* Button1.xcdatamodeld */,
@@ -245,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				630CBC001A09BAE600688B93 /* LocationStack.m in Sources */,
 				63E3B2531A0855930087D1D6 /* AppDelegate.m in Sources */,
 				63E3B2501A0855930087D1D6 /* main.m in Sources */,
 				63F8EE0E1A0982C400ED8459 /* LocationViewController.m in Sources */,

@@ -8,9 +8,11 @@
 
 #import "AddLocationViewController.h"
 #import "LocationEntry.h"
+#import "LocationStack.h"
 
 @interface AddLocationViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *locationField;
+@property NSMutableArray *locationArray; //  ***** FIX THIS TO USE STACK INSTEAD OF THIS ARRAY ******
 @property LocationEntry *location;
 @end
 
@@ -22,11 +24,12 @@
     //  Future:  push the location to the server (or do that in the model?)
     //  Show the location string on the debug version of the app
     
-    NSString *tempLoc = @"50 California St., San Francisco, CA";
-    self.location.name = tempLoc;
-    self.locationField.text = self.location.name;
+    NSString *tempLoc = @"50 California St., San Francisco, CA";   // Get the location
+    LocationEntry *loc = [[LocationEntry alloc] init];              // Initialize a Location object
+    loc.name = tempLoc;                                             // Set the name of the instance
+    [self.locationArray addObject:loc];                             // Add the object to the array (stack)
+    self.locationField.text = loc.name;
     
-    // this all seems very convoluted  - MVC or just bs?
 }
 
 - (IBAction)clearLocation:(id)sender {
@@ -37,8 +40,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    LocationEntry *loc = [[LocationEntry alloc] init]; // initialize a location Model item
-    self.location = loc;                                    // set view controller property to the (empty) item
+    
+    //start with local array, then refactor with LocationStack
+    
+    self.locationArray = [NSMutableArray array];            // the same as alloc init?
+//    LocationEntry *loc = [[LocationEntry alloc] init];      // initialize a location Model item
+//    self.location = loc;                                    // set view controller property to the (empty) item
     
 }
 - (void)didReceiveMemoryWarning {
