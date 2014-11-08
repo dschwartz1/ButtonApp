@@ -12,8 +12,10 @@
 
 @interface AddLocationViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *locationField;
-@property NSMutableArray *locationArray; //  ***** FIX THIS TO USE STACK INSTEAD OF THIS ARRAY ******
-@property LocationEntry *location;
+@property LocationStack *locStack;  // note done...paused here....
+
+// @property NSMutableArray *locationArray; //  ***** FIX THIS TO USE STACK INSTEAD OF THIS ARRAY ******
+@property LocationEntry *currentLocation;
 @end
 
 @implementation AddLocationViewController
@@ -23,18 +25,51 @@
     //  Set the model to the location string
     //  Future:  push the location to the server (or do that in the model?)
     //  Show the location string on the debug version of the app
+
+/* -----------------  TEMP LOCATIONS ----------------------------------------- */
+    NSString *tempLoc = @"Marin Country Day School, Corte Madera, CA";   // Get the location
+    NSString *tempLoc2 = @"2855 Scott St., San Francisco, CA";
+    NSString *tempLoc3 = @"50 California St., San Francisco, CA";
+    static int n = 0;
     
-    NSString *tempLoc = @"50 California St., San Francisco, CA";   // Get the location
-    LocationEntry *loc = [[LocationEntry alloc] init];              // Initialize a Location object
-    loc.name = tempLoc;                                             // Set the name of the instance
-    [self.locationArray addObject:loc];                             // Add the object to the array (stack)
-    self.locationField.text = loc.name;
+/* --------------------------------------------------------------------------- */
+
+    self.currentLocation = [[LocationEntry alloc] init];    // Initialize a Location object every button push
+
+/* --------------------------------------------------------------------------- */
+//         **********  temp stuff here *************
+    NSString *tempLocation;
+    
+    if (n == 0) {
+        tempLocation = tempLoc;
+        n++;
+    } else if (n == 1) {
+        tempLocation = tempLoc2;
+        n++;
+    } else {  // n == 2
+        tempLocation = tempLoc3;
+        n = 0;
+    }
+
+    self.currentLocation.name = tempLocation;  //replace with getting real geo-coordinate
+    
+    [self.locStack push:self.currentLocation]; // push onto stack for permanent storage
+    
+// Set the name of the instance
+//    [self.locationArray addObject:loc];                             // Add the object to the array (stack)
+    
+    self.locationField.text = self.currentLocation.name;  // set the diag display to the current location
     
 }
 
 - (IBAction)clearLocation:(id)sender {
     // via an invisible button, clear the location string from the display
-    self.locationField.text = @"";
+    if( !self.locStack.empty){          // or could just test currentLocation for nil in next line...
+        self.currentLocation = [self.locStack pop];
+        self.locationField.text = self.currentLocation.name;
+    } else {
+        self.locationField.text = @"";
+    }
 }
 
 - (void)viewDidLoad {
@@ -43,9 +78,10 @@
     
     //start with local array, then refactor with LocationStack
     
-    self.locationArray = [NSMutableArray array];            // the same as alloc init?
-//    LocationEntry *loc = [[LocationEntry alloc] init];      // initialize a location Model item
-//    self.location = loc;                                    // set view controller property to the (empty) item
+//    self.locationArray = [NSMutableArray array];            // the same as alloc init?
+      self.locStack = [[LocationStack alloc] init];           // initialize the location stack
+      self.currentLocation = [[LocationEntry alloc] init];
+
     
 }
 - (void)didReceiveMemoryWarning {
