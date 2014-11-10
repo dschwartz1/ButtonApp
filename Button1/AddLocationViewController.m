@@ -69,8 +69,8 @@
 
 - (IBAction)clearLocation:(id)sender {
     // via an invisible button, clear the location string from the display
+    [self.locStack pop];
     if( !self.locStack.empty){          // or could just test currentLocation for nil in next line...
-        [self.locStack pop];
         self.currentLocation = self.locStack.head;
         NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, self.currentLocation.creationDate];    // Include location and datetimestamp
         self.locationField.text = displayString;
