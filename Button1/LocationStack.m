@@ -29,22 +29,13 @@
 }
 
 - (void) push:(LocationEntry*) location {
+    // Push the given location entry onto the stack and reset the head to point to it
+    
     [self.locStack addObject:location];
 
     // last object in array is most recent - the head of the stack
     self.head = [self.locStack lastObject];
     self.empty = FALSE;
-
-// ********** debugging stuff here ****************
-    NSUInteger n;
-    n = [self.locStack count];
-//    while (n > 0) {
-    NSLog(@"locStack count = %lu", n);
-//        NSLog (@"push:  index: %lu    name: %@", (unsigned long)n, [self.locStack objectAtIndex:n-1]);
-//        n = n - 1;
-//    }
-//*********** end debugging stuff   ***************
-    
     
     // trying to set timestamp....
     // bug: how to set readonly?-->     self.head.creationDate = [NSDate date];
@@ -53,16 +44,21 @@
 }
 
 - (LocationEntry *) pop {
-    LocationEntry *poppedEntry;
+    // Pop the current location from the stack
+    // Reset the head to the new location at the top of the stack, or nil if empty
+    // Reset the .empty flag as appropriate.
+    
+    LocationEntry *newHead;
     if (!self.empty){
-        poppedEntry = [self.locStack lastObject]; //***  BUG seems to be here.....
-        
         [self.locStack removeLastObject];
-//        self.head = [self.locStack lastObject];  //**********  not sure we need this; beware empty stack.
-
-        return poppedEntry;
+        newHead = [self.locStack lastObject];
+        self.head = newHead;
+        if( [self.locStack count] == 0){
+            self.empty = TRUE;
+        }
+        return newHead;
+        
      } else {
-         self.empty = TRUE;
          return nil;
      }
 

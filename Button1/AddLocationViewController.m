@@ -11,13 +11,14 @@
 #import "LocationStack.h"
 
 @interface AddLocationViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *locationField;
 @property LocationStack *locStack;  // note done...paused here....
-
-// @property NSMutableArray *locationArray; //  ***** FIX THIS TO USE STACK INSTEAD OF THIS ARRAY ******
 @property LocationEntry *currentLocation;
+
 @end
 
+//======================================================================================
 @implementation AddLocationViewController
 
 - (IBAction)getLocation:(id)sender {
@@ -50,23 +51,29 @@
         tempLocation = tempLoc3;
         n = 0;
     }
+    
+/* --------------------------------------------------------------------------- */
 
     self.currentLocation.name = tempLocation;  //replace with getting real geo-coordinate
+    self.currentLocation.creationDate = [NSDate date];
     
     [self.locStack push:self.currentLocation]; // push onto stack for permanent storage
     
-// Set the name of the instance
-//    [self.locationArray addObject:loc];                             // Add the object to the array (stack)
+    NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, self.currentLocation.creationDate];    // Include location and datetimestamp
     
-    self.locationField.text = self.currentLocation.name;  // set the diag display to the current location
+    self.locationField.text = displayString;
+    
+//    self.locationField.text = self.currentLocation.name;  // set the diag display to the current location
     
 }
 
 - (IBAction)clearLocation:(id)sender {
     // via an invisible button, clear the location string from the display
     if( !self.locStack.empty){          // or could just test currentLocation for nil in next line...
-        self.currentLocation = [self.locStack pop];
-        self.locationField.text = self.currentLocation.name;
+        [self.locStack pop];
+        self.currentLocation = self.locStack.head;
+        NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, self.currentLocation.creationDate];    // Include location and datetimestamp
+        self.locationField.text = displayString;
     } else {
         self.locationField.text = @"";
     }

@@ -15,6 +15,7 @@
 
 // @property CLPlacemark *place;
 
-@property (readonly) NSDate *creationDate;
+@property NSDate *creationDate;
 
+- (id) init;
 @end
