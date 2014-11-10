@@ -17,6 +17,7 @@
 @property LocationEntry *head;      // Not sure we need this **********
 @property BOOL empty;
 
+- (id) init;
 - (void) push:(LocationEntry*) location;
 - (LocationEntry *) pop;
 

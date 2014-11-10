@@ -16,12 +16,35 @@
 
 @implementation LocationStack
 
+- (id) init {
+    self = [super init];
+    
+    if(self) {
+        self.locStack = [[NSMutableArray alloc] init];
+    }
+    self.head = nil;
+    self.empty = TRUE;
+    
+    return self;
+}
+
 - (void) push:(LocationEntry*) location {
     [self.locStack addObject:location];
 
     // last object in array is most recent - the head of the stack
     self.head = [self.locStack lastObject];
     self.empty = FALSE;
+
+// ********** debugging stuff here ****************
+    NSUInteger n;
+    n = [self.locStack count];
+//    while (n > 0) {
+    NSLog(@"locStack count = %lu", n);
+//        NSLog (@"push:  index: %lu    name: %@", (unsigned long)n, [self.locStack objectAtIndex:n-1]);
+//        n = n - 1;
+//    }
+//*********** end debugging stuff   ***************
+    
     
     // trying to set timestamp....
     // bug: how to set readonly?-->     self.head.creationDate = [NSDate date];
