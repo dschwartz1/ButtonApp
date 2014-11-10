@@ -32,7 +32,7 @@
 - (LocationEntry *) pop {
     LocationEntry *poppedEntry;
     if (!self.empty){
-        poppedEntry = [self.locStack lastObject];
+        poppedEntry = [self.locStack lastObject]; //***  BUG seems to be here.....
         
         [self.locStack removeLastObject];
 //        self.head = [self.locStack lastObject];  //**********  not sure we need this; beware empty stack.
