@@ -113,7 +113,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+// =========================================================================================
+//                LOCATION SERVICES STUFF
+
+
+// Request permission to use location services
+
++ (CLAuthorizationStatus)authorizationStatus;
+
+- (void) requestWhenInUseAuthoriztion {
+    
+    
+}
+
 /*
+ - (void)startSignificantChangeUpdates
+ {
+    // Create the location manager if this object does not already have one
+     if( nil == locationManager)
+         locationManager = [[CLLocationManager alloc] init];
+     
+     locationManager.delegate = self;
+     
+ 
+ */
+ 
+ 
+ 
+
+//==========================================================================================
+ 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -121,6 +151,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

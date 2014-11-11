@@ -1,1 +1,18 @@
 
+1.   call  locationServices Enabled method of CLLocationManager : if NO then system is not enabled.
+
+1. alt?   Call 'authorizationStatus' class method to see if authorized.
+
+2. Create CLLocationManager object and assign a delegate to it.
+
+3. Store a "strong reference" to it in the app (not a local variable)
+
+4. If authorization is not determined, ask user
+
+5. Call specific method to start the service.
+standard:  locationServicesEnabled method
+significant:  significantLocationChangeMonitoringAvailable method
+
+
+
+When get first location, check timestamp to see if it is "stale".
