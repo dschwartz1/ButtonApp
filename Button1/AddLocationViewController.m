@@ -27,6 +27,10 @@
     //  Future:  push the location to the server (or do that in the model?)
     //  Show the location string on the debug version of the app
 
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    
 /* -----------------  TEMP LOCATIONS ----------------------------------------- */
     NSString *tempLoc = @"Marin Country Day School, Corte Madera, CA";   // Get the location
     NSString *tempLoc2 = @"2855 Scott St., San Francisco, CA";
@@ -58,8 +62,11 @@
     self.currentLocation.creationDate = [NSDate date];
     
     [self.locStack push:self.currentLocation]; // push onto stack for permanent storage
+  
+    NSString *formattedDateString = [dateFormatter stringFromDate:self.currentLocation.creationDate];
+    NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, formattedDateString];
     
-    NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, self.currentLocation.creationDate];    // Include location and datetimestamp
+//    NSString *displayString = [NSString localizedStringWithFormat:@"%@\n%@", self.currentLocation.name, self.currentLocation.creationDate];    // Include location and datetimestamp
     
     self.locationField.text = displayString;
     
@@ -69,10 +76,19 @@
 
 - (IBAction)clearLocation:(id)sender {
     // via an invisible button, clear the location string from the display
+    
+    // Set the date formatting appropriately
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    
+
     [self.locStack pop];
     if( !self.locStack.empty){          // or could just test currentLocation for nil in next line...
         self.currentLocation = self.locStack.head;
-        NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, self.currentLocation.creationDate];    // Include location and datetimestamp
+        NSString *formattedDateString = [dateFormatter stringFromDate:self.currentLocation.creationDate];
+        NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, formattedDateString];
         self.locationField.text = displayString;
     } else {
         self.locationField.text = @"";
