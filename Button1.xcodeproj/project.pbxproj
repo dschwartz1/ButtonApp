@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		630CBC001A09BAE600688B93 /* LocationStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 630CBBFF1A09BAE600688B93 /* LocationStack.m */; };
+		63B28FF21A119197009C8454 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B28FF11A119197009C8454 /* CoreLocation.framework */; };
 		63CC4AC11A0869D70090945E /* LocationEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CC4AC01A0869D70090945E /* LocationEntry.m */; };
 		63CC4AC31A0872BF0090945E /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 63CC4AC21A0872BF0090945E /* ToDo */; };
 		63E3B2501A0855930087D1D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B24F1A0855930087D1D6 /* main.m */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		630CBBFE1A09BAE600688B93 /* LocationStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationStack.h; sourceTree = "<group>"; };
 		630CBBFF1A09BAE600688B93 /* LocationStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationStack.m; sourceTree = "<group>"; };
+		63B28FF11A119197009C8454 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		63CC4ABF1A0869D70090945E /* LocationEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEntry.h; sourceTree = "<group>"; };
 		63CC4AC01A0869D70090945E /* LocationEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEntry.m; sourceTree = "<group>"; };
 		63CC4AC21A0872BF0090945E /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B28FF21A119197009C8454 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +79,7 @@
 		63E3B2411A0855930087D1D6 = {
 			isa = PBXGroup;
 			children = (
+				63B28FF11A119197009C8454 /* CoreLocation.framework */,
 				63E3B24C1A0855930087D1D6 /* Button1 */,
 				63E3B2691A0855930087D1D6 /* Button1Tests */,
 				63E3B24B1A0855930087D1D6 /* Products */,

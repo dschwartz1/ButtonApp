@@ -9,6 +9,7 @@
 #import "AddLocationViewController.h"
 #import "LocationEntry.h"
 #import "LocationStack.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface AddLocationViewController ()
 
