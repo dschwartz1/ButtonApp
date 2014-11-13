@@ -21,7 +21,8 @@
     
     if (![CLLocationManager locationServicesEnabled]) {
         // location services are disabled, alert user
-        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location Services are disabled on this device.", @"DisabledTitle") message:NSLocalizedString(@"Please enable Location Services in Settings to use this app.", @"DisabledMessage") delegate:nil cancelButtonTitle:NSLocalizedString(@"Got It", @"OKButtonTitle") otherButtonTitles:nil];
+        // Bug:  fix use of localized message to use a strings file like the example.
+        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location Services are disabled on this device.", @"DisabledTitle") message:NSLocalizedString(@"Please enable Location Services in Privacy section of Settings to use this app.", @"DisabledMessage") delegate:nil cancelButtonTitle:NSLocalizedString(@"Got It", @"OKButtonTitle") otherButtonTitles:nil];
                                                                                                   
         [servicesDisabledAlert show];
         return FALSE;  //Bug:  this appears to do nothing. Want it to exit the app.

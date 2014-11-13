@@ -16,34 +16,47 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationField;
 @property LocationStack *locStack;  // note done...paused here....
 @property LocationEntry *currentLocation;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+
+@property (nonatomic, strong) CLLocation *bestEffortAtLocation;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
 
 @end
 
 //======================================================================================
 @implementation AddLocationViewController
 
-- (IBAction)getLocation:(id)sender {
-    //  Get the location, put it in a string
-    //  Set the model to the location string
-    //  Future:  push the location to the server (or do that in the model?)
-    //  Show the location string on the debug version of the app
 
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
     
-/* -----------------  TEMP LOCATIONS ----------------------------------------- */
+    _locStack = [[LocationStack alloc] init];           // initialize the location stack
+    _currentLocation = [[LocationEntry alloc] init];  // same as self.currentLocation = ...
+    
+}
+
+- (NSDateFormatter *)dateFormatter {
+    if (_dateFormatter == nil) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [_dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    }
+    return _dateFormatter;
+}
+
+- (IBAction)getLocation:(id)sender {
+
+    
+// -----------------  TEMP LOCATIONS -----------------------------------------
     NSString *tempLoc = @"Linq Hotel, Las Vegas, NV";   // Get the location
     NSString *tempLoc2 = @"2855 Scott St., San Francisco, CA";
     NSString *tempLoc3 = @"50 California St., San Francisco, CA";
     static int n = 0;
     
-/* --------------------------------------------------------------------------- */
 
-    self.currentLocation = [[LocationEntry alloc] init];    // Initialize a Location object every button push
 
-/* --------------------------------------------------------------------------- */
-//         **********  temp stuff here *************
     NSString *tempLocation;
     
     if (n == 0) {
@@ -57,21 +70,22 @@
         n = 0;
     }
     
-/* --------------------------------------------------------------------------- */
+// -------------------END TEMP STUFF -----------------------------------------
+    
 
+    
+    self.currentLocation = [[LocationEntry alloc] init]; // Initialize a Location object every button push
     self.currentLocation.name = tempLocation;  //replace with getting real geo-coordinate
     self.currentLocation.creationDate = [NSDate date];
     
     [self.locStack push:self.currentLocation]; // push onto stack for permanent storage
   
-    NSString *formattedDateString = [dateFormatter stringFromDate:self.currentLocation.creationDate];
+    NSString *formattedDateString = [self.dateFormatter stringFromDate:self.currentLocation.creationDate];
     NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, formattedDateString];
     
-//    NSString *displayString = [NSString localizedStringWithFormat:@"%@\n%@", self.currentLocation.name, self.currentLocation.creationDate];    // Include location and datetimestamp
     
     self.locationField.text = displayString;
     
-//    self.locationField.text = self.currentLocation.name;  // set the diag display to the current location
     
 }
 
@@ -80,15 +94,12 @@
     
     // Set the date formatting appropriately
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-    
+
 
     [self.locStack pop];
     if( !self.locStack.empty){          // or could just test currentLocation for nil in next line...
         self.currentLocation = self.locStack.head;
-        NSString *formattedDateString = [dateFormatter stringFromDate:self.currentLocation.creationDate];
+        NSString *formattedDateString = [self.dateFormatter stringFromDate:self.currentLocation.creationDate];
         NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, formattedDateString];
         self.locationField.text = displayString;
     } else {
@@ -96,18 +107,7 @@
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    //start with local array, then refactor with LocationStack
-    
-//    self.locationArray = [NSMutableArray array];            // the same as alloc init?
-      self.locStack = [[LocationStack alloc] init];           // initialize the location stack
-      self.currentLocation = [[LocationEntry alloc] init];
 
-    
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
