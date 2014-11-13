@@ -33,7 +33,7 @@
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
     
 /* -----------------  TEMP LOCATIONS ----------------------------------------- */
-    NSString *tempLoc = @"Marin Country Day School, Corte Madera, CA";   // Get the location
+    NSString *tempLoc = @"Linq Hotel, Las Vegas, NV";   // Get the location
     NSString *tempLoc2 = @"2855 Scott St., San Francisco, CA";
     NSString *tempLoc3 = @"50 California St., San Francisco, CA";
     static int n = 0;
@@ -119,14 +119,15 @@
 
 
 // Request permission to use location services
-
+/*
 + (CLAuthorizationStatus)authorizationStatus;
 
 - (void) requestWhenInUseAuthoriztion {
     
     
 }
-
+*/
+ 
 /*
  - (void)startSignificantChangeUpdates
  {
