@@ -98,12 +98,12 @@
 		63E3B24C1A0855930087D1D6 /* Button1 */ = {
 			isa = PBXGroup;
 			children = (
-				63F8EE081A0975AA00ED8459 /* AddLocationViewController.h */,
-				63F8EE091A0975AA00ED8459 /* AddLocationViewController.m */,
 				63E3B2511A0855930087D1D6 /* AppDelegate.h */,
 				63E3B2521A0855930087D1D6 /* AppDelegate.m */,
 				63E3B2571A0855930087D1D6 /* ViewController.h */,
 				63E3B2581A0855930087D1D6 /* ViewController.m */,
+				63F8EE081A0975AA00ED8459 /* AddLocationViewController.h */,
+				63F8EE091A0975AA00ED8459 /* AddLocationViewController.m */,
 				63E3B25A1A0855930087D1D6 /* Main.storyboard */,
 				63CC4AC21A0872BF0090945E /* ToDo */,
 				63CC4ABF1A0869D70090945E /* LocationEntry.h */,
