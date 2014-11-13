@@ -71,8 +71,10 @@
     }
     
 // -------------------END TEMP STUFF -----------------------------------------
-    
-
+    //****** See warning below; may need to move this locic out of the button push method....
+    // Create the core location manager object
+    _locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
     
     self.currentLocation = [[LocationEntry alloc] init]; // Initialize a Location object every button push
     self.currentLocation.name = tempLocation;  //replace with getting real geo-coordinate

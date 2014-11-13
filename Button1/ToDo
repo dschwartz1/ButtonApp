@@ -1,5 +1,8 @@
 
-1.   call  locationServices Enabled method of CLLocationManager : if NO then system is not enabled.
+1.  DONE. call  locationServices Enabled method of CLLocationManager : if NO then system is not enabled.
+
+- Learn about delegates. Example uses one.  Need to fix warning bug in current code.
+
 
 1. alt?   Call 'authorizationStatus' class method to see if authorized.
 
