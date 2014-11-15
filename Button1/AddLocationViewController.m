@@ -11,7 +11,7 @@
 #import "LocationStack.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface AddLocationViewController ()
+@interface AddLocationViewController ()<CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *locationField;
 @property LocationStack *locStack;  // note done...paused here....
@@ -46,9 +46,9 @@
     return _dateFormatter;
 }
 
-- (IBAction)getLocation:(id)sender {
+#pragma mark - Location Manager Stuff
 
-    
+- (IBAction)getLocation:(id)sender {
 // -----------------  TEMP LOCATIONS -----------------------------------------
     NSString *tempLoc = @"Linq Hotel, Las Vegas, NV";   // Get the location
     NSString *tempLoc2 = @"2855 Scott St., San Francisco, CA";
@@ -71,10 +71,25 @@
     }
     
 // -------------------END TEMP STUFF -----------------------------------------
-    //****** See warning below; may need to move this locic out of the button push method....
+
+// Test the current authorization status of this app to use Location Services
+    
+    (CLAuthorizationStatus *)status = [CLLocationManager authorizationStatus];
+    
+    
     // Create the core location manager object
+    
     _locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    
+
+    
+    
+    
+    
+    
+    
+    
     
     self.currentLocation = [[LocationEntry alloc] init]; // Initialize a Location object every button push
     self.currentLocation.name = tempLocation;  //replace with getting real geo-coordinate
@@ -82,6 +97,9 @@
     
     [self.locStack push:self.currentLocation]; // push onto stack for permanent storage
   
+    
+    
+    
     NSString *formattedDateString = [self.dateFormatter stringFromDate:self.currentLocation.creationDate];
     NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, formattedDateString];
     
@@ -90,6 +108,13 @@
     
     
 }
+
+
+
+
+
+
+
 
 - (IBAction)clearLocation:(id)sender {
     // via an invisible button, clear the location string from the display

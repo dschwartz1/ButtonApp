@@ -14,7 +14,6 @@
 		63E3B2501A0855930087D1D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B24F1A0855930087D1D6 /* main.m */; };
 		63E3B2531A0855930087D1D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B2521A0855930087D1D6 /* AppDelegate.m */; };
 		63E3B2561A0855930087D1D6 /* Button1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B2541A0855930087D1D6 /* Button1.xcdatamodeld */; };
-		63E3B2591A0855930087D1D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B2581A0855930087D1D6 /* ViewController.m */; };
 		63E3B25C1A0855930087D1D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E3B25A1A0855930087D1D6 /* Main.storyboard */; };
 		63E3B25E1A0855930087D1D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63E3B25D1A0855930087D1D6 /* Images.xcassets */; };
 		63E3B2611A0855930087D1D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E3B25F1A0855930087D1D6 /* LaunchScreen.xib */; };
@@ -38,15 +37,13 @@
 		63B28FF11A119197009C8454 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		63CC4ABF1A0869D70090945E /* LocationEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEntry.h; sourceTree = "<group>"; };
 		63CC4AC01A0869D70090945E /* LocationEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEntry.m; sourceTree = "<group>"; };
-		63CC4AC21A0872BF0090945E /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
+		63CC4AC21A0872BF0090945E /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ToDo; path = Button1/ToDo; sourceTree = "<group>"; };
 		63E3B24A1A0855930087D1D6 /* Button1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Button1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E3B24E1A0855930087D1D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63E3B24F1A0855930087D1D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		63E3B2511A0855930087D1D6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		63E3B2521A0855930087D1D6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		63E3B2551A0855930087D1D6 /* Button1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Button1.xcdatamodel; sourceTree = "<group>"; };
-		63E3B2571A0855930087D1D6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		63E3B2581A0855930087D1D6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		63E3B25B1A0855930087D1D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63E3B25D1A0855930087D1D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		63E3B2601A0855930087D1D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -79,6 +76,7 @@
 		63E3B2411A0855930087D1D6 = {
 			isa = PBXGroup;
 			children = (
+				63CC4AC21A0872BF0090945E /* ToDo */,
 				63B28FF11A119197009C8454 /* CoreLocation.framework */,
 				63E3B24C1A0855930087D1D6 /* Button1 */,
 				63E3B2691A0855930087D1D6 /* Button1Tests */,
@@ -100,12 +98,9 @@
 			children = (
 				63E3B2511A0855930087D1D6 /* AppDelegate.h */,
 				63E3B2521A0855930087D1D6 /* AppDelegate.m */,
-				63E3B2571A0855930087D1D6 /* ViewController.h */,
-				63E3B2581A0855930087D1D6 /* ViewController.m */,
 				63F8EE081A0975AA00ED8459 /* AddLocationViewController.h */,
 				63F8EE091A0975AA00ED8459 /* AddLocationViewController.m */,
 				63E3B25A1A0855930087D1D6 /* Main.storyboard */,
-				63CC4AC21A0872BF0090945E /* ToDo */,
 				63CC4ABF1A0869D70090945E /* LocationEntry.h */,
 				63CC4AC01A0869D70090945E /* LocationEntry.m */,
 				630CBBFE1A09BAE600688B93 /* LocationStack.h */,
@@ -250,7 +245,6 @@
 				63E3B2501A0855930087D1D6 /* main.m in Sources */,
 				63CC4AC11A0869D70090945E /* LocationEntry.m in Sources */,
 				63F8EE0A1A0975AA00ED8459 /* AddLocationViewController.m in Sources */,
-				63E3B2591A0855930087D1D6 /* ViewController.m in Sources */,
 				63E3B2561A0855930087D1D6 /* Button1.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,5 +17,5 @@
 
 @property NSDate *creationDate;
 
-- (id) init;
+//- (id) init;
 @end
