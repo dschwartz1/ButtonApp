@@ -72,16 +72,18 @@
     
 // -------------------END TEMP STUFF -----------------------------------------
 
-// Test the current authorization status of this app to use Location Services
-    
-    (CLAuthorizationStatus *)status = [CLLocationManager authorizationStatus];
-    
+//Bug:   This is all happening every button push --- BUG!???????????????
     
     // Create the core location manager object
     
     _locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
+    CLAuthorizationStatus authStatus = [CLLocationManager authorizationStatus];
+    if (authStatus == kCLAuthorizationStatusNotDetermined){
+        [self.locationManager requestAlwaysAuthorization];
+// how to properly exit the app if location services is not allowed?
+    }
 
     
     
@@ -154,6 +156,8 @@
     
 }
 */
+
+// locationManager:didChangeAuthorizationStatus  // method returns after prompting for auth
  
 /*
  - (void)startSignificantChangeUpdates

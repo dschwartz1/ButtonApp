@@ -27,6 +27,14 @@
         [servicesDisabledAlert show];
         return FALSE;  //Bug:  this appears to do nothing. Want it to exit the app.
     }
+    // Test the current authorization status of this app to use Location Services
+    
+    CLAuthorizationStatus authStatus = [CLLocationManager authorizationStatus];
+    if ((authStatus == kCLAuthorizationStatusRestricted || authStatus == kCLAuthorizationStatusDenied)) {
+        return (FALSE);
+        
+    }
+    
     return YES;
 }
 
