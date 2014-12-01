@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>App location usage string - this app users your location to provide your location to others.</string>
+	<string>This app uses the location sensing capabilities of your device to track and store locations you visit for your future reference. It may also, at your direction, share that information with others.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

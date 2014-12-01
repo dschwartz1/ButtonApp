@@ -19,3 +19,26 @@ significant:  significantLocationChangeMonitoringAvailable method
 
 
 When get first location, check timestamp to see if it is "stale".
+
+----------
+
+Move check Permission to use Location Services to app launch vs initial button push.
+
+
+
+
+
+
+=======================
+
+User Flow
+-------------
+Button push
+0.0:  Capture current location, store in stack for review.
+0.1:  Capture current location, push to server for future reference.
+
+0.2:  Capture current location, message specified people with location and message
+        - Ability to specify message
+        - Ability to specify recipients
+
+0.3:  Press and hold to set homing beacon mode - time interval, or distance interval.

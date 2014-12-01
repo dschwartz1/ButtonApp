@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 David Schwartz. All rights reserved.
 //
 
+//  Creates view of Button
+//  Creates location manager object at creation of view
+//  0.1  Captures location upon a button push, stores in stack.
+
 #import "AddLocationViewController.h"
 #import "LocationEntry.h"
 #import "LocationStack.h"
@@ -13,27 +17,43 @@
 
 @interface AddLocationViewController ()<CLLocationManagerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *locationField;
-@property LocationStack *locStack;  // note done...paused here....
-@property LocationEntry *currentLocation;
-@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet   UILabel  *locationField;     // hidden field in the button to show the location
+@property                         LocationStack *locStack;          // note done...paused here....
+@property                         LocationEntry *currentLocation;   // The latest captured location. May initially be stale...
 
-@property (nonatomic, strong) CLLocation *bestEffortAtLocation;
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation        *bestEffortAtLocation;
+@property (nonatomic, strong) NSDateFormatter   *dateFormatter;
 
 
 @end
 
-//======================================================================================
+//==============================================================================
+
 @implementation AddLocationViewController
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+// Do any additional setup after loading the view.
     
     _locStack = [[LocationStack alloc] init];           // initialize the location stack
     _currentLocation = [[LocationEntry alloc] init];  // same as self.currentLocation = ...
+    
+    
+// Create the core location manager object
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    
+// Check if this App is authorized to use Location Services
+    CLAuthorizationStatus authStatus = [CLLocationManager authorizationStatus];
+    if (authStatus == kCLAuthorizationStatusNotDetermined){
+        [self.locationManager requestAlwaysAuthorization];
+        // how to properly exit the app if location services is not allowed?
+    }else if (false) {
+        // Do what if not allowed? Show some message until location permission is received...
+    }
     
 }
 
@@ -48,9 +68,13 @@
 
 #pragma mark - Location Manager Stuff
 
+
+//--------------------------------------------------------------------------------
+
 - (IBAction)getLocation:(id)sender {
+    
 // -----------------  TEMP LOCATIONS -----------------------------------------
-    NSString *tempLoc = @"Linq Hotel, Las Vegas, NV";   // Get the location
+    NSString *tempLoc = @"Rose's Cafe, Union St., San Francisco, CA";   // Get the location
     NSString *tempLoc2 = @"2855 Scott St., San Francisco, CA";
     NSString *tempLoc3 = @"50 California St., San Francisco, CA";
     static int n = 0;
@@ -73,24 +97,7 @@
 // -------------------END TEMP STUFF -----------------------------------------
 
 //Bug:   This is all happening every button push --- BUG!???????????????
-    
-    // Create the core location manager object
-    
-    _locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    
-    CLAuthorizationStatus authStatus = [CLLocationManager authorizationStatus];
-    if (authStatus == kCLAuthorizationStatusNotDetermined){
-        [self.locationManager requestAlwaysAuthorization];
-// how to properly exit the app if location services is not allowed?
-    }
 
-    
-    
-    
-    
-    
-    
     
     
     self.currentLocation = [[LocationEntry alloc] init]; // Initialize a Location object every button push
