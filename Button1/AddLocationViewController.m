@@ -49,8 +49,7 @@
         _locationManager = [[CLLocationManager alloc] init];
     }
     self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;          // Set Desired accuracy. Also try NearestTenMeters
-    self.locationManager.distanceFilter = 5;             // Monitor all movements > 5 meters
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;        // Set Desired accuracy.     self.locationManager.distanceFilter = 2;                       // Monitor all movements > 2 meters
     
     
 // Check if this App is authorized to use Location Services
@@ -208,50 +207,57 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
     
     CLLocation *location = [locations lastObject];
-    NSString *timeStamp = [self.dateFormatter stringFromDate:location.timestamp];
+    NSDate *eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) > 5.0) {                                // ignore updates within 5 secs
     
-    CLLocationSpeed mph = (location.speed * 2.23694);
-    if (mph < 0) mph = 0;
-    
-/*    NSString *displayString = [NSString stringWithFormat:@"Lat: %3.0f Lng: %3.0f %@\nDir: %3.0f Alt: %3.0f Acc: %3.0f MPH: %2.0f",
-                               location.coordinate.latitude,
-                               location.coordinate.longitude,
-                               timeStamp,
-                               location.course,
-                               location.altitude,
-                               location.horizontalAccuracy,
-                               mph
-                               ];
-    self.locationField.text = displayString;
-*/
-    
-// if > 15 sec, and location has changed by 10 M horizontally, and accuracy is within 10 M, do place lookup, and push location onto stack.  Goal is to know exactly which house someone is at, and if they go to another house.
-    
-// Re-factor this to push, reverse geo-code (get address), and display location data as separate methods.
-    
-    if (!_getAddress){
-        _getAddress = [[CLGeocoder alloc] init];
+        NSString *timeStamp = [self.dateFormatter stringFromDate:location.timestamp];
+        
+        CLLocationSpeed mph = (location.speed * 2.23694);
+        if (mph < 0) mph = 0;
+        
+    /*    NSString *displayString = [NSString stringWithFormat:@"Lat: %3.0f Lng: %3.0f %@\nDir: %3.0f Alt: %3.0f Acc: %3.0f MPH: %2.0f",
+                                   location.coordinate.latitude,
+                                   location.coordinate.longitude,
+                                   timeStamp,
+                                   location.course,
+                                   location.altitude,
+                                   location.horizontalAccuracy,
+                                   mph
+                                   ];
+        self.locationField.text = displayString;
+    */
+        
+    // if > 15 sec, and location has changed by 10 M horizontally, and accuracy is within 10 M, do place lookup, and push location onto stack.  Goal is to know exactly which house someone is at, and if they go to another house.
+        
+    // Re-factor this to push, reverse geo-code (get address), and display location data as separate methods.
+        
+        if (!_getAddress){
+            _getAddress = [[CLGeocoder alloc] init];
+        }
+        
+
+        [_getAddress reverseGeocodeLocation:location completionHandler:
+         ^(NSArray *placemarks, NSError *error) {
+             NSString *dispStr = nil;
+             CLPlacemark *place = nil;     // ** replace with LocationEntry later
+             if (error.code == kCLErrorNetwork){
+                 self.locationField.text = @"Too many place lookups per minute...";
+             } else if ([placemarks count] > 0){
+                 place = [placemarks lastObject];
+                 dispStr = [NSString stringWithFormat: @"%@\n%@ %@,%@, %@\nDir: %3.0f MPH: %2.0f",
+                            timeStamp,
+                            place.subThoroughfare,                          // ** may be Null !!!!
+                            place.thoroughfare,
+                            place.locality,
+                            place.administrativeArea,
+                            location.course,
+                            mph ];
+                 self.locationField.text = dispStr;
+
+             }
+         }];
     }
-    
-
-    [_getAddress reverseGeocodeLocation:location completionHandler:
-     ^(NSArray *placemarks, NSError *error) {
-         NSString *dispStr = nil;
-         CLPlacemark *place = nil;     // ** replace with LocationEntry later
-
-         if ([placemarks count] > 0){
-             place = [placemarks objectAtIndex:0];
-             dispStr = [NSString stringWithFormat: @"%@ %@, \n%@, %@",
-                        place.subThoroughfare,                          // ** may be Null !!!!
-                        place.thoroughfare,
-                        place.locality,
-                        place.administrativeArea];
-             self.locationField.text = dispStr;
-
-         }
-         // ** do something if there is an error
-     }];
-    
 }
 
 //--------------------------------------------------------------------------------
