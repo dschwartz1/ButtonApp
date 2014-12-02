@@ -205,11 +205,14 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     // ** do something smart...like update the UI with current location.
     // Most recent update is the last item in the array.
     // .description provices text formatted list of all info
-
+    
+    int locs;
+    locs =  (int)[locations count];
+    
     static int x = 0;
     
     self.locationField.text = @"didUpdateLodations was called";
-    NSString *displayString = [NSString stringWithFormat:@"%@%d", @"didUpdateLocations was called - ", x];
+    NSString *displayString = [NSString stringWithFormat:@"%@%d\n%d", @"didUpdateLocations was called - ", x, locs];
     self.locationField.text = displayString;
     
 //    self.locationField.text = manager.location.description;                // display current location
