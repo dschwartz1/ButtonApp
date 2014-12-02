@@ -151,9 +151,11 @@
 
     if (n == 0){
         [self.locationManager startUpdatingLocation];
+        n = 1;
     }
     else {
         [self.locationManager stopUpdatingLocation];
+        n = 0;
     }
     
     
@@ -182,6 +184,7 @@
     }
 }
 
+//--------------------------------------------------------------------------------
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -196,17 +199,23 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     //** do something smart....
 }
 
+//--------------------------------------------------------------------------------
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     // ** do something smart...like update the UI with current location.
     // Most recent update is the last item in the array.
     // .description provices text formatted list of all info
+
+    static int x = 0;
     
+    self.locationField.text = @"didUpdateLodations was called";
+    NSString *displayString = [NSString stringWithFormat:@"%@%d", @"didUpdateLocations was called - ", x];
+    self.locationField.text = displayString;
     
-    self.locationField.text = manager.location.description;                // display current location
+//    self.locationField.text = manager.location.description;                // display current location
 //    self.locationField.text = [locations lastObject];                     // ** Try this out too....
     
-
+    x++;
 
     
 }
