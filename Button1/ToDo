@@ -29,7 +29,7 @@ Today
 ---------
 - Maybe filter should be set to ignore changes in 2d direction (ie which way phone is pointing) from triggering location changes
 
-
+- Ensure UIRequiredDeviceCapabilities key gps is in the plist file
 
 =======================
 

@@ -12,8 +12,7 @@
 @interface LocationEntry : NSObject
 
 @property NSString *name;
-
-// @property CLPlacemark *place;
+@property CLPlacemark *place;
 
 @property NSDate *creationDate;
 

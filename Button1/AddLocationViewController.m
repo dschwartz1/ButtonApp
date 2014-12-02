@@ -25,6 +25,7 @@
 @property (nonatomic) CLLocationAccuracy         desiredAccuracy;
 @property (nonatomic, strong) CLLocation        *bestEffortAtLocation;
 @property (nonatomic, strong) NSDateFormatter   *dateFormatter;
+@property (nonatomic) CLGeocoder                *getAddress;        // Reverse geo-codes lat&long to get address
 
 
 @end
@@ -202,9 +203,9 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 //--------------------------------------------------------------------------------
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    // ** do something smart...like update the UI with current location.
+   
     // Most recent update is the last item in the array.
-    // .description provices text formatted list of all info
+    
     
     CLLocation *location = [locations lastObject];
     NSString *timeStamp = [self.dateFormatter stringFromDate:location.timestamp];
@@ -212,7 +213,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     CLLocationSpeed mph = (location.speed * 2.23694);
     if (mph < 0) mph = 0;
     
-    NSString *displayString = [NSString stringWithFormat:@"Lat: %3.0f Lng: %3.0f %@\nDir: %3.0f Alt: %3.0f Acc: %3.0f MPH: %2.0f",
+/*    NSString *displayString = [NSString stringWithFormat:@"Lat: %3.0f Lng: %3.0f %@\nDir: %3.0f Alt: %3.0f Acc: %3.0f MPH: %2.0f",
                                location.coordinate.latitude,
                                location.coordinate.longitude,
                                timeStamp,
@@ -222,14 +223,40 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
                                mph
                                ];
     self.locationField.text = displayString;
+*/
     
-//    self.locationField.text = manager.location.description;                // display current location
-//    self.locationField.text = [locations lastObject];                     // ** Try this out too....
+// if > 15 sec, and location has changed by 10 M horizontally, and accuracy is within 10 M, do place lookup, and push location onto stack.  Goal is to know exactly which house someone is at, and if they go to another house.
+    
+// Re-factor this to push, reverse geo-code (get address), and display location data as separate methods.
+    
+    if (!_getAddress){
+        _getAddress = [[CLGeocoder alloc] init];
+    }
     
 
+    [_getAddress reverseGeocodeLocation:location completionHandler:
+     ^(NSArray *placemarks, NSError *error) {
+         NSString *dispStr = nil;
+         CLPlacemark *place = nil;     // ** replace with LocationEntry later
+
+         if ([placemarks count] > 0){
+             place = [placemarks objectAtIndex:0];
+             dispStr = [NSString stringWithFormat: @"%@ %@, \n%@, %@",
+                        place.subThoroughfare,                          // ** may be Null !!!!
+                        place.thoroughfare,
+                        place.locality,
+                        place.administrativeArea];
+             self.locationField.text = dispStr;
+
+         }
+         // ** do something if there is an error
+     }];
     
 }
 
+//--------------------------------------------------------------------------------
+
+//- (void) locationToAddress:(CLLocation *)location
 
 // =========================================================================================
 //                LOCATION SERVICES STUFF
