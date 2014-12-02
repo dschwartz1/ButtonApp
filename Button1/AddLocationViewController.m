@@ -48,8 +48,8 @@
         _locationManager = [[CLLocationManager alloc] init];
     }
     self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;          // Set Desired accuracy. Also try NearestTenMeters
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;             // Monitor all movements
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;          // Set Desired accuracy. Also try NearestTenMeters
+    self.locationManager.distanceFilter = 5;             // Monitor all movements > 5 meters
     
     
 // Check if this App is authorized to use Location Services
@@ -209,14 +209,17 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     CLLocation *location = [locations lastObject];
     NSString *timeStamp = [self.dateFormatter stringFromDate:location.timestamp];
     
+    CLLocationSpeed mph = (location.speed * 2.23694);
+    if (mph < 0) mph = 0;
     
-    NSString *displayString = [NSString stringWithFormat:@"Lat: %3.0f Long: %3.0f %@\nDir: %3.0f Alt: %3.0f Acc: %3.0f",
+    NSString *displayString = [NSString stringWithFormat:@"Lat: %3.0f Lng: %3.0f %@\nDir: %3.0f Alt: %3.0f Acc: %3.0f MPH: %2.0f",
                                location.coordinate.latitude,
                                location.coordinate.longitude,
                                timeStamp,
                                location.course,
                                location.altitude,
-                               location.horizontalAccuracy
+                               location.horizontalAccuracy,
+                               mph
                                ];
     self.locationField.text = displayString;
     
