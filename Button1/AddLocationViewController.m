@@ -50,7 +50,7 @@
     }
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;        // Set Desired accuracy.
-    self.locationManager.distanceFilter = 2;                       // Monitor all movements > 2 meters
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;           // Monitor all movements
     
     
 // Check if this App is authorized to use Location Services
@@ -263,15 +263,16 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
                  } else if ((direction > 135) && (direction <= 225)){
                      dirString = @"South";
                  } else dirString = @"West";
-                 
-                 dispStr = [NSString stringWithFormat: @"%@\n%@ %@,%@, %@\n%@ at %2.0f MPH",
+                 double accuracyFeet = location.horizontalAccuracy * 3.28084;
+                 dispStr = [NSString stringWithFormat: @"%@\n%@ %@, %@, %@\n%@ at %2.0f MPH +/-%3.0fft",
                             timeStamp,
                             address,
                             place.thoroughfare,
                             place.locality,
                             place.administrativeArea,
                             dirString,
-                            mph ];
+                            mph,
+                            accuracyFeet];
                  self.locationField.text = dispStr;
 
              }
