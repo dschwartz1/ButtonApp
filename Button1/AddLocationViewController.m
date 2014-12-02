@@ -210,7 +210,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     NSString *timeStamp = [self.dateFormatter stringFromDate:location.timestamp];
     
     
-    NSString *displayString = [NSString stringWithFormat:@"Lat: %+.6f Long: %+.6f %@\nDir: %f Alt: %f\nAccuracy: %f",
+    NSString *displayString = [NSString stringWithFormat:@"Lat: %3f Long: %3f %@\nDir: %3f Alt: %3f\nAccuracy: %3f",
                                location.coordinate.latitude,
                                location.coordinate.longitude,
                                timeStamp,
