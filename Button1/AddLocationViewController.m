@@ -202,9 +202,8 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     // Most recent update is the last item in the array.
     // .description provices text formatted list of all info
     
-    self.locationField.text = @"this is a test";
     
-//    self.locationField.text = manager.location.description;                // display current location
+    self.locationField.text = manager.location.description;                // display current location
 //    self.locationField.text = [locations lastObject];                     // ** Try this out too....
     
 
