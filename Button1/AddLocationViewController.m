@@ -49,7 +49,8 @@
         _locationManager = [[CLLocationManager alloc] init];
     }
     self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;        // Set Desired accuracy.     self.locationManager.distanceFilter = 2;                       // Monitor all movements > 2 meters
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;        // Set Desired accuracy.
+    self.locationManager.distanceFilter = 2;                       // Monitor all movements > 2 meters
     
     
 // Check if this App is authorized to use Location Services
@@ -209,7 +210,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     CLLocation *location = [locations lastObject];
     NSDate *eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) > 5.0) {                                // ignore updates within 5 secs
+    if (abs(howRecent) < 5.0) {                              // ignore updates older than 5 secs
     
         NSString *timeStamp = [self.dateFormatter stringFromDate:location.timestamp];
         
@@ -241,17 +242,35 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
          ^(NSArray *placemarks, NSError *error) {
              NSString *dispStr = nil;
              CLPlacemark *place = nil;     // ** replace with LocationEntry later
+             NSString *address = nil;
+             CLLocationDirection direction;
+             NSString *dirString = nil;
+             
              if (error.code == kCLErrorNetwork){
                  self.locationField.text = @"Too many place lookups per minute...";
              } else if ([placemarks count] > 0){
                  place = [placemarks lastObject];
-                 dispStr = [NSString stringWithFormat: @"%@\n%@ %@,%@, %@\nDir: %3.0f MPH: %2.0f",
+                 address = place.subThoroughfare;
+                 if ([address length] == 0) {
+                     address = @"";
+                 }
+                 direction = location.course;
+                 if (((direction >= 0) && (direction <= 45)) || (direction > 315)){
+                     dirString = @"North";
+                 }
+                 else if((direction > 45) && (direction <= 135)){
+                     dirString = @"East";
+                 } else if ((direction > 135) && (direction <= 225)){
+                     dirString = @"South";
+                 } else dirString = @"West";
+                 
+                 dispStr = [NSString stringWithFormat: @"%@\n%@ %@,%@, %@\n%@ at %2.0f MPH",
                             timeStamp,
-                            place.subThoroughfare,                          // ** may be Null !!!!
+                            address,
                             place.thoroughfare,
                             place.locality,
                             place.administrativeArea,
-                            location.course,
+                            dirString,
                             mph ];
                  self.locationField.text = dispStr;
 
