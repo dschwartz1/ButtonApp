@@ -25,7 +25,9 @@ When get first location, check timestamp to see if it is "stale".
 Move check Permission to use Location Services to app launch vs initial button push.
 
 
-
+Today
+---------
+- Maybe filter should be set to ignore changes in 2d direction (ie which way phone is pointing) from triggering location changes
 
 
 

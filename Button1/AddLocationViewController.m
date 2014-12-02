@@ -206,19 +206,23 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     // Most recent update is the last item in the array.
     // .description provices text formatted list of all info
     
-    int locs;
-    locs =  (int)[locations count];
+    CLLocation *location = [locations lastObject];
+    NSString *timeStamp = [self.dateFormatter stringFromDate:location.timestamp];
     
-    static int x = 0;
     
-    self.locationField.text = @"didUpdateLodations was called";
-    NSString *displayString = [NSString stringWithFormat:@"%@%d\n%d", @"didUpdateLocations was called - ", x, locs];
+    NSString *displayString = [NSString stringWithFormat:@"Lat: %+.6f Long: %+.6f %@\nDir: %f Alt: %f\nAccuracy: %f",
+                               location.coordinate.latitude,
+                               location.coordinate.longitude,
+                               timeStamp,
+                               location.course,
+                               location.altitude,
+                               location.horizontalAccuracy
+                               ];
     self.locationField.text = displayString;
     
 //    self.locationField.text = manager.location.description;                // display current location
 //    self.locationField.text = [locations lastObject];                     // ** Try this out too....
     
-    x++;
 
     
 }
