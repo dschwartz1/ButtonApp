@@ -245,6 +245,8 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
              NSString *address = nil;
              CLLocationDirection direction;
              NSString *dirString = nil;
+             NSArray *areasOfInterest = nil;
+             NSString *aoiString = nil;
              
              if (error.code == kCLErrorNetwork){
                  self.locationField.text = @"Too many place lookups per minute...";
@@ -253,6 +255,13 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
                  address = place.subThoroughfare;
                  if ([address length] == 0) {
                      address = @"";
+                 }
+                 if (place.areasOfInterest != nil){
+                     areasOfInterest = place.areasOfInterest[0];
+                     aoiString = areasOfInterest;
+                 }
+                 else {
+                     aoiString = @"";
                  }
                  direction = location.course;
                  if (((direction >= 0) && (direction <= 45)) || (direction > 315)){
@@ -264,14 +273,17 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
                      dirString = @"South";
                  } else dirString = @"West";
                  double accuracyFeet = location.horizontalAccuracy * 3.28084;
-                 dispStr = [NSString stringWithFormat: @"%@\n%@ %@, %@, %@\n%@ at %2.0f MPH +/-%3.0fft",
+//                 dispStr = [NSString stringWithFormat: @"%@\n%@ %@, %@, %@\n%@ at %2.0f MPH +/-%3.0fft",
+                 dispStr = [NSString stringWithFormat: @"%@\n%@ %@, %@, %@\n %@  +/-%3.0fft",
+
                             timeStamp,
                             address,
                             place.thoroughfare,
                             place.locality,
                             place.administrativeArea,
-                            dirString,
-                            mph,
+//                            dirString,
+//                            mph,
+                            aoiString,              //Testing this....
                             accuracyFeet];
                  self.locationField.text = dispStr;
 
