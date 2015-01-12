@@ -50,7 +50,8 @@
     }
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;        // Set Desired accuracy.
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;           // Monitor all movements
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;           // Monitor all movements  *** Change to 20ft?
+    // Must be set to None in order to use Deferred Updates Until...
     
     
 // Check if this App is authorized to use Location Services
@@ -81,15 +82,10 @@
 //=================================================================================================
 #pragma mark - Location Manager Stuff
 
-/*
-//--------------------------------------------------------------------------------
+/* ---- This was .1 implementation. Hard-coded locations, push locations on to stack each button push.
 
 - (IBAction)getLocation:(id)sender {                        // Called when the button is pressed. Get current location and save.
-    
-    // .1 implementation idea:
-    //   - Pushing button once turns ON location tracking
-    //   - Location changes immediately update UI (see how sensitive this is)
-    //   - Pushing button again turns OFF location tracking
+ 
     
     //   TEMP LOCATIONS -----------------------------------------
     NSString *tempLoc = @"Rose's Cafe, Union St., San Francisco, CA";
@@ -118,7 +114,7 @@
     
     
     self.currentLocation = [[LocationEntry alloc] init];    // Initialize a Location object every button push
-    self.currentLocation.name = tempLocation;               //**replace with getting real geo-coordinate
+    self.currentLocation.name = tempLocation;               // **replace with getting real geo-coordinate
     
     
     self.currentLocation.creationDate = [NSDate date];
@@ -139,11 +135,10 @@
 
 */
 
-- (IBAction)getLocation:(id)sender {                        // .1 version.  Start and stop tracking locations.
-    
-    // .1 implementation idea:
+- (IBAction)getLocation:(id)sender {
+    //  0.2 implementation - Button press toggles location tracking On and Off.
     //   - Pushing button once turns ON location tracking
-    //   - Location changes immediately update UI (see how sensitive this is)
+    //   - Location changes immediately update UI
     //   - Pushing button again turns OFF location tracking
     
 
@@ -176,7 +171,7 @@
 
     [self.locStack pop];
     if( !self.locStack.empty){          // or could just test currentLocation for nil in next line...
-        self.currentLocation = self.locStack.head;
+        self.currentLocation = self.locStack.top;
         NSString *formattedDateString = [self.dateFormatter stringFromDate:self.currentLocation.creationDate];
         NSString *displayString = [NSString stringWithFormat:@"%@\n%@", self.currentLocation.name, formattedDateString];
         self.locationField.text = displayString;
@@ -193,19 +188,17 @@
 }
 
 
-//--------------------------------------------------------------------------------
 
-- (void)locationManager:(CLLocationManager *)manager
-didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    //** do something smart....
-}
 
 //--------------------------------------------------------------------------------
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-   
-    // Most recent update is the last item in the array.
+    // Notifies the delegate object (this object) that new location data is available.
+    // This method is REQUIRED, part of the CLLocationManagerDelegate protocol
+
+    // It is called from/on the main event loop every time new data is available.
     
+    // Most recent update is the last item in the array.
     
     CLLocation *location = [locations lastObject];
     NSDate *eventDate = location.timestamp;
@@ -245,7 +238,7 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
              NSString *address = nil;
              CLLocationDirection direction;
              NSString *dirString = nil;
-             NSArray *areasOfInterest = nil;
+             NSString *areasOfInterest = nil;
              NSString *aoiString = nil;
              
              if (error.code == kCLErrorNetwork){
@@ -290,6 +283,39 @@ didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
              }
          }];
     }
+    // Call Deferred Updates here....
+}
+
+- (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager {
+    // Tells the delgate that location updates were paused.
+    // This method is REQUIRED, part of the CLLocationManagerDelegate protocol
+}
+
+- (void) locationManagerDidResumeLocationUpdates:(CLLocationManager *)manager {
+    // Tells the delegate that location updates have been resumed.
+    // This method is REQUIRED, part of the CLLocationManagerDelegate protocol
+
+}
+
+- (void) locationManager: (CLLocationManager *) manager didFinishDeferredUpdatesWithError:(NSError *)error{
+    // Tells the delgate that location updates will no longer be deferred.
+    // E.g. called when timeout or distance parameter is met
+    // This method is OPTIONAL, part of the CLLocationManagerDelegate protocol
+
+}
+
+- (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    // Tells the delegate that the location manager service was unable to retreive a location value
+    // This method is OPTIONAL, part of the CLLocationManagerDelegate protocol
+
+}
+
+
+- (void)locationManager:(CLLocationManager *)manager
+didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    // Tells the delegate that the autorization status to use Location Service has changed
+    // This method is OPTIONAL, part of the CLLocationManagerDelegate protocol
+
 }
 
 //--------------------------------------------------------------------------------

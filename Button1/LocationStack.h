@@ -14,7 +14,7 @@
 
 @interface LocationStack : NSObject
 
-@property LocationEntry *head;
+@property LocationEntry *top;
 @property BOOL empty;
 
 - (id) init;

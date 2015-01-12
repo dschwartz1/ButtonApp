@@ -1,18 +1,41 @@
 
+User Flow
+-------------
+Button push verions
+0.0:  3 hard-coded locations, button to push to stack, invisible pop button to clear
+0.1:  Button toggles on and off; area of interest to see places; continuous monitoring
+0.2:  Push distinct locations to stack. Sample location every minute.
+0.3:  Capture current location, push to server for future reference.
+
+0.4:  Capture current location, message specified people with location and message
+- Ability to specify message
+- Ability to specify recipients
+
+0.5:  Press and hold to set homing beacon mode - time interval, or distance interval.
+
+Ability to query server by date range for locations visited
+Voice enabled interface for querying server
+
+
+
+- Include UIBackgroundModes key with the location value in the Info.plist to enable background tracking of location.
+
+
+
 1.  DONE. call  locationServices Enabled method of CLLocationManager : if NO then system is not enabled.
 
-- Learn about delegates. Example uses one.  Need to fix warning bug in current code.
+   Learn about delegates. Example uses one.  Need to fix warning bug in current code.
 
 
 1. alt?   Call 'authorizationStatus' class method to see if authorized.
 
-2. Create CLLocationManager object and assign a delegate to it.
+DONE 2. Create CLLocationManager object and assign a delegate to it.
 
-3. Store a "strong reference" to it in the app (not a local variable)
+DONE 3. Store a "strong reference" to it in the app (not a local variable)
 
 4. If authorization is not determined, ask user
 
-5. Call specific method to start the service.
+DONE 5. Call specific method to start the service.
 standard:  locationServicesEnabled method
 significant:  significantLocationChangeMonitoringAvailable method
 
@@ -32,15 +55,3 @@ Today
 - Ensure UIRequiredDeviceCapabilities key gps is in the plist file
 
 =======================
-
-User Flow
--------------
-Button push
-0.0:  Capture current location, store in stack for review.
-0.1:  Capture current location, push to server for future reference.
-
-0.2:  Capture current location, message specified people with location and message
-        - Ability to specify message
-        - Ability to specify recipients
-
-0.3:  Press and hold to set homing beacon mode - time interval, or distance interval.

@@ -22,7 +22,7 @@
     if(self) {
         self.locStack = [[NSMutableArray alloc] init];
     }
-    self.head = nil;
+    self.top = nil;
     self.empty = TRUE;
     
     return self;
@@ -33,8 +33,8 @@
     
     [self.locStack addObject:location];
 
-    // last object in array is most recent - the head of the stack
-    self.head = [self.locStack lastObject];
+    // last object in array is most recent - the head of the stack  ****>> change to Top and Bottom - top is most recent
+    self.top = [self.locStack lastObject];
     self.empty = FALSE;
     
     // trying to set timestamp....
@@ -52,7 +52,7 @@
     if (!self.empty){
         [self.locStack removeLastObject];
         newHead = [self.locStack lastObject];
-        self.head = newHead;
+        self.top = newHead;
         if( [self.locStack count] == 0){
             self.empty = TRUE;
         }
@@ -71,6 +71,6 @@
 
 -(void) flush {
     [self.locStack removeAllObjects];
-    self.head = nil;
+    self.top = nil;
 }
 @end
