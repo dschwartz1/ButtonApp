@@ -203,7 +203,7 @@
     CLLocation *location = [locations lastObject];
     NSDate *eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 5.0) {                              // ignore updates older than 5 secs
+    if (fabs(howRecent) < 5.0) {                              // ignore updates older than 5 secs
     
         NSString *timeStamp = [self.dateFormatter stringFromDate:location.timestamp];
         
